@@ -17,7 +17,7 @@ Vue 3 + TypeScript frontend for managing insurance sales and calculating custome
 - Tailwind CSS
 - Vitest for testing
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -71,5 +71,3 @@ npm test
 # Test with coverage
 npm run test:coverage
 ```
-
-370 tests covering components, composables, and utilities.
