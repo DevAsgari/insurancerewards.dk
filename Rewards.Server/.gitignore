@@ -1,0 +1,33 @@
+# Sensitive configuration files - NEVER commit these
+appsettings.Development.json
+appsettings.Production.json
+appsettings.*.json
+!appsettings.json
+web.config
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build results
+bin/
+obj/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# User-specific files
+*.user
+*.suo
+*.cache
+
+# REST Client files
+*.http
+
+# Node.js - should not be in backend project
+node_modules/
+package.json
+package-lock.json

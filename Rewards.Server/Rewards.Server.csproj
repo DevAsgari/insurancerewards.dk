@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<SpaRoot>..\rewards.client</SpaRoot>
+		<SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+		<SpaProxyServerUrl>https://localhost:55992</SpaProxyServerUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="AutoMapper.Collection" Version="9.0.0" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.11" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\rewards.client\rewards.client.esproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<ProjectReference Include="..\Tredjepart\Tredjepart.csproj" />
+	</ItemGroup>
+
+	<!-- Copy frontend build output to wwwroot on publish -->
+	<Target Name="PublishFrontend" AfterTargets="Publish">
+		<ItemGroup>
+			<FrontendFiles Include="..\rewards.client\dist\**\*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(FrontendFiles)" DestinationFolder="$(PublishDir)wwwroot\%(RecursiveDir)" />
+	</Target>
+
+</Project>

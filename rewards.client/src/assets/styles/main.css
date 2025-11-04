@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors */
+  --color-brand-from: #667eea;
+  --color-brand-to: #764ba2;
+  --color-brand-purple: #7b39ec;
+
+  /* Accent colors */
+  --color-accent-from: #3dd5a7;
+  --color-accent-to: #2ab891;
+
+  /* Success colors */
+  --color-success: #3dd5a7;
+  --color-success-dark: #2ab891;
+  --color-success-light: #5fe3bb;
+
+  /* Error colors */
+  --color-error: #ef4444;
+  --color-error-dark: #dc2626;
+  --color-error-light: #fee2e2;
+  --color-error-subtle: rgba(239, 68, 68, 0.05);
+
+  /* Warning colors */
+  --color-warning: #f59e0b;
+  --color-warning-dark: #d97706;
+  --color-warning-light: #fef3c7;
+
+  /* Info colors */
+  --color-info: #3b82f6;
+  --color-info-dark: #2563eb;
+  --color-info-light: #dbeafe;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(
+    to bottom right,
+    var(--color-brand-from) 0%,
+    var(--color-brand-to) 100%
+  );
+  --gradient-accent: linear-gradient(
+    to bottom right,
+    var(--color-accent-from) 0%,
+    var(--color-accent-to) 100%
+  );
+  --gradient-success: linear-gradient(
+    to bottom right,
+    var(--color-success) 0%,
+    var(--color-success-dark) 100%
+  );
+  --gradient-error: linear-gradient(
+    to bottom right,
+    var(--color-error) 0%,
+    var(--color-error-dark) 100%
+  );
+  --gradient-warning: linear-gradient(
+    to bottom right,
+    var(--color-warning) 0%,
+    var(--color-warning-dark) 100%
+  );
+  --gradient-info: linear-gradient(
+    to bottom right,
+    var(--color-info) 0%,
+    var(--color-info-dark) 100%
+  );
+
+  /* Shadows */
+  --shadow-button-brand: 0 4px 12px rgba(102, 126, 234, 0.4);
+  --shadow-button-brand-hover: 0 8px 20px rgba(102, 126, 234, 0.5);
+  --shadow-button-accent: 0 4px 12px rgba(61, 213, 167, 0.4);
+  --shadow-button-accent-hover: 0 8px 20px rgba(61, 213, 167, 0.5);
+  --shadow-button-success: 0 4px 12px rgba(61, 213, 167, 0.4);
+  --shadow-button-success-hover: 0 8px 20px rgba(61, 213, 167, 0.5);
+  --shadow-button-error: 0 4px 12px rgba(239, 68, 68, 0.3);
+  --shadow-button-error-hover: 0 6px 16px rgba(239, 68, 68, 0.4);
+  --shadow-button-warning: 0 4px 12px rgba(245, 158, 11, 0.3);
+  --shadow-button-warning-hover: 0 6px 16px rgba(245, 158, 11, 0.4);
+  --shadow-button-info: 0 4px 12px rgba(59, 130, 246, 0.3);
+  --shadow-button-info-hover: 0 6px 16px rgba(59, 130, 246, 0.4);
+  --shadow-focus-accent: 0 0 0 3px rgba(61, 213, 167, 0.1);
+  --shadow-focus-error: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  --shadow-dropdown: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Z-index scale - Semantic layering system */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-notification: 70;
+  --z-navigation: 1000;      
+  --z-notification-top: 1100; 
+  --z-modal-high: 1200;
+  --z-tooltip: 9999;
+
+  /* Legacy z-index names for backwards compatibility */
+  --z-index-dropdown: var(--z-dropdown);
+  --z-index-sticky: var(--z-sticky);
+  --z-index-fixed: var(--z-navigation);
+  --z-index-modal-backdrop: var(--z-backdrop);
+  --z-index-modal: var(--z-modal);
+  --z-index-popover: var(--z-popover);
+  --z-index-tooltip: var(--z-tooltip);
+
+  /* Transition durations */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+
+  /* Transition timing */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   BASE LAYER
+   ========================================================================== */
+
+@layer base {
+  body {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-900);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      sans-serif;
+    line-height: 1.6;
+  }
+
+  #app {
+    min-height: 100vh;
+  }
+}
+
+/* ==========================================================================
+   COMPONENTS LAYER
+   ========================================================================== */
+
+@layer components {
+  /* --------------------------------------------------------------------------
+     Buttons
+     -------------------------------------------------------------------------- */
+
+  /* Base button styles - shared across all button types */
+  .btn-primary,
+  .btn-accent,
+  .btn-secondary,
+  .btn-danger,
+  .btn-warning,
+  .btn-info {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    border: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    line-height: normal;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    transition: all var(--transition-normal);
+    background: var(--gradient-brand);
+    color: var(--color-white);
+    box-shadow: var(--shadow-button-brand);
+  }
+
+  /* Accent Button */
+  .btn-accent {
+    transition: all var(--transition-normal);
+    background: var(--gradient-accent);
+    color: var(--color-white);
+    box-shadow: var(--shadow-button-accent);
+  }
+
+  /* Shared hover, active, and disabled states */
+  .btn-primary:hover,
+  .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-brand-hover);
+  }
+
+  .btn-primary:active,
+  .btn-accent:active {
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled,
+  .btn-accent:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: translateY(0);
+  }
+
+  /* Secondary Button - Different structure (outlined) */
+  .btn-secondary {
+    transition: all var(--transition-normal);
+    border: 2px solid var(--color-gray-200);
+    background: var(--color-white);
+    color: var(--color-gray-700);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-gray-300);
+    background: var(--color-gray-50);
+  }
+
+  .btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Danger Button */
+  .btn-danger {
+    transition: all var(--transition-slow);
+    background: var(--gradient-error);
+    color: var(--color-white);
+    box-shadow: var(--shadow-button-error);
+  }
+
+  .btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-error-hover);
+  }
+
+  /* Warning Button */
+  .btn-warning {
+    transition: all var(--transition-slow);
+    background: var(--gradient-warning);
+    color: var(--color-white);
+    box-shadow: var(--shadow-button-warning);
+  }
+
+  .btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-warning-hover);
+  }
+
+  /* Info Button */
+  .btn-info {
+    transition: all var(--transition-slow);
+    background: var(--gradient-info);
+    color: var(--color-white);
+    box-shadow: var(--shadow-button-info);
+  }
+
+  .btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-info-hover);
+  }
+
+  /* --------------------------------------------------------------------------
+    Icon
+   -------------------------------------------------------------------------- */
+  /* Icon Button */
+  .icon-btn {
+    padding: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-gray-500);
+    cursor: pointer;
+    border-radius: 0.125rem;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-btn:hover {
+    background: var(--color-gray-100);
+  }
+
+  .icon-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Icons Color */
+  .icon-decor {
+    color: var(--color-brand-purple);
+    fill: currentColor;
+  }
+
+  .icon-white {
+    color: var(--color-white);
+    fill: currentColor;
+  }
+
+  /* --------------------------------------------------------------------------
+     Cards & Layout Components
+     -------------------------------------------------------------------------- */
+
+  .card-header {
+    background: var(--gradient-brand), var(--gradient-accent);
+    padding: 1.5rem 2rem;
+    color: var(--color-white);
+  }
+
+  @media (max-width: 1024px) {
+    .card-header {
+      padding: 1.5rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-header {
+      padding: 1.5rem 1rem;
+    }
+  }
+}

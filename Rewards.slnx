@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="rewards.client/rewards.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Rewards.Server.Tests/Rewards.Server.Tests.csproj" />
+  <Project Path="Rewards.Server/Rewards.Server.csproj" />
+  <Project Path="Tredjepart/Tredjepart.csproj" Id="bc43c251-bb01-417b-9023-f24800579f6c" />
+</Solution>
