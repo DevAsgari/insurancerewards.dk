@@ -78,7 +78,7 @@ Rewards/
 | POST | `/api/sales` | Create new sale |
 | PUT | `/api/sales/{id}/price-satisfaction` | Update price & satisfaction |
 | DELETE | `/api/sales/{id}` | Delete sale |
-| GET | `/api/sales/calculatereward/{strategyType}` | Calculate rewards (0-3) |
+| GET | `/api/sales/calculatereward/{strategyType}` | Calculate rewards |
 
 ## Running the project
 
