@@ -1,60 +1,35 @@
-# Rewards Server
+# Insurance Rewards - Backend
 
-ASP.NET Core Web API for managing sales and calculating rewards.
+ASP.NET Core Web API for managing insurance sales and calculating customer rewards.
 
-## Prerequisites
+## What it does
+
+- Create and manage insurance sales records
+- Calculate customer rewards using 4 different strategies
+- Store data in MySQL database
+- Provide API for the Vue 3 frontend
+
+## Requirements
 
 - .NET 8.0 SDK
 - MySQL 8.0+
-- Visual Studio 2022 / Rider / VS Code (optional)
 
-## Setup Instructions
-
-### 1. Clone the repository
+## Running the backend
 
 ```bash
-git clone <repository-url>
-cd Rewards/Rewards.Server
-```
+# Install dependencies
+dotnet restore
 
-### 2. Configure Database Connection
+# Setup database connection in appsettings.Development.json
 
-Copy the example configuration files and add your database credentials:
-
-```bash
-# For Development
-cp appsettings.Development.example.json appsettings.Development.json
-
-# For Production
-cp appsettings.Production.example.json appsettings.Production.json
-```
-
-Edit the files and replace the placeholder values with your actual database connection details:
-- Server: Your MySQL server address
-- Database: Database name
-- User: Database username
-- Password: Database password
-
-### 3. Apply Database Migrations
-
-```bash
+# Apply database migrations
 dotnet ef database update
-```
 
-### 4. Run the Application
-
-```bash
-# Development mode
+# Run
 dotnet run
-
-# Or with watch (auto-reload)
-dotnet watch run
 ```
 
-The API will be available at:
-- HTTPS: https://localhost:7174
-- HTTP: http://localhost:5230
-- Swagger UI: https://localhost:7174/swagger
+API runs at https://localhost:7174
 
 ## Project Structure
 
@@ -75,45 +50,25 @@ Rewards.Server/
 
 ## API Endpoints
 
-### Health Check
-- `GET /health` - Check API and database status
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/sales` | Get all sales |
+| GET | `/api/sales/{id}` | Get sale by ID |
+| POST | `/api/sales` | Create new sale |
+| PUT | `/api/sales/{id}/price-satisfaction` | Update price & satisfaction |
+| DELETE | `/api/sales/{id}` | Delete sale |
+| GET | `/api/sales/calculatereward/{strategyType}` | Calculate rewards (0-3) |
 
-### Sales
-- `GET /api/sales` - Get all sales
-- `GET /api/sales/{id}` - Get sale by ID
-- `POST /api/sales` - Create new sale
-- `PUT /api/sales/{id}` - Update existing sale
-- `DELETE /api/sales/{id}` - Delete sale
+## Built with
 
-See Swagger UI for detailed API documentation when running in development mode.
-
-## Configuration Files
-
-- `appsettings.json` - Base configuration (committed to git)
-- `appsettings.Development.json` - Development settings (ignored by git)
-- `appsettings.Production.json` - Production settings (ignored by git)
-- `*.example.json` - Template files for developers
-
-## Security Notes
-
-Never commit files containing sensitive information:
-- `appsettings.Development.json`
-- `appsettings.Production.json`
-- `web.config`
-- `*.user` files
-
-These are already in `.gitignore`.
-
-## Deployment
-
-The application is configured for deployment on Simply.com shared hosting with IIS.
-
-See `Properties/PublishProfiles/IISProfile.pubxml` for publish settings.
-
-## Technologies Used
-
-- ASP.NET Core 8.0
+- .NET 8.0 Web API
+- MySQL database
 - Entity Framework Core
-- MySQL / Pomelo.EntityFrameworkCore.MySql
 - AutoMapper
-- Swagger / OpenAPI
+
+## Design Patterns
+
+- Strategy Pattern (4 reward calculation strategies)
+- Repository Pattern (data access)
+- Factory Pattern (strategy creation)
+- Adapter Pattern (third-party integration)
