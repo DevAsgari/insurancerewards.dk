@@ -89,7 +89,7 @@ Rewards/
 
 ### Quick Start
 
-1. Create a MySQL database called `rewards_db`
+1. Create a MySQL database
 
 2. Update connection string in `Rewards.Server/appsettings.Development.json`
 
@@ -109,20 +109,6 @@ npm run dev
 ```
 
 5. Open https://localhost:55992 in your browser
-
-## Testing
-
-**Backend:** 76 tests
-```bash
-cd Rewards.Server.Tests
-dotnet test
-```
-
-**Frontend:** 370 tests
-```bash
-cd rewards.client
-npm test
-```
 
 ## View online
 
