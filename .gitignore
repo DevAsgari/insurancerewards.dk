@@ -79,3 +79,8 @@ TestResults/
 *.trx
 *.coverage
 *.coveragexml
+
+# Others
+analyse.md
+lmateriale.md
+
