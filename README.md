@@ -47,7 +47,7 @@ Rewards/
 │   ├── Strategies/              # Reward calculation strategies
 │   └── Validation/              # Validation logic & constants
 │
-├── Rewards.Server.Tests/        # Backend unit tests (76 tests)
+├── Rewards.Server.Tests/        # Backend unit tests
 │   ├── Strategies/              # Strategy tests
 │   ├── Services/                # Service layer tests
 │   └── Repositories/            # Repository tests
