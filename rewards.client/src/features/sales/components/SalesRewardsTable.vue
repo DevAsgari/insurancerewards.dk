@@ -109,7 +109,7 @@ export default defineComponent({
     // Define table columns
     const columns = computed<DataTableColumn<Sale>[]>(() => [
       {
-        key: "saleType",
+        key: "insuranceTypeName",
         header: "Insurance",
         align: "left",
       },

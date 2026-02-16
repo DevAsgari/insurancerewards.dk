@@ -45,7 +45,8 @@ describe('useRewardCalculation', () => {
   const mockSales: Sale[] = [
     {
       id: '1',
-      saleType: 'Life Insurance',
+      insuranceTypeId: 1,
+      insuranceTypeName: 'Life Insurance',
       price: 1000,
       customerSatisfaction: 5,
       saleDate: '2024-01-01',
@@ -53,7 +54,8 @@ describe('useRewardCalculation', () => {
     },
     {
       id: '2',
-      saleType: 'Health Insurance',
+      insuranceTypeId: 2,
+      insuranceTypeName: 'Health Insurance',
       price: 2000,
       customerSatisfaction: 4,
       saleDate: '2024-01-02',
@@ -106,7 +108,7 @@ describe('useRewardCalculation', () => {
       await calculateRewards(REWARD_STRATEGIES.SALES_PRICE)
 
       expect(calculatedRewards.value).toEqual([])
-      expect(mockSnackbar.error).toHaveBeenCalledWith('Calculation failed')
+      expect(mockSnackbar.error).toHaveBeenCalledWith('Failed to calculate rewards')
     })
 
     it('should update strategy label for different strategies', async () => {

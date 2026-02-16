@@ -22,19 +22,11 @@ export function useFormValidation() {
     })
   }
 
-  const validateInsuranceType = (value: string): boolean => {
+  const validateInsuranceType = (value: number | undefined): boolean => {
     clearError('insuranceType')
 
-    if (!value || value.trim().length === 0) {
+    if (value === undefined || value === null) {
       errors.insuranceType = ValidationConstants.SaleType.REQUIRED_ERROR_MESSAGE
-      return false
-    }
-
-    if (
-      value.length < ValidationConstants.SaleType.MIN_LENGTH ||
-      value.length > ValidationConstants.SaleType.MAX_LENGTH
-    ) {
-      errors.insuranceType = ValidationConstants.SaleType.LENGTH_ERROR_MESSAGE
       return false
     }
 

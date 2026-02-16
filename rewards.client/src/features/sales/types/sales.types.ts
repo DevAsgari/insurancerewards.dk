@@ -4,7 +4,8 @@
 
 export interface Sale {
   id: string
-  saleType: string
+  insuranceTypeId: number
+  insuranceTypeName: string
   price: number
   customerSatisfaction: number
   saleDate: string
@@ -12,7 +13,7 @@ export interface Sale {
 }
 
 export interface SaleFormData {
-  insuranceType: string
+  insuranceType: number | undefined
   price: number
   satisfaction: number | undefined
   date: string
@@ -20,7 +21,7 @@ export interface SaleFormData {
 
 export interface CreateSalePayload {
   id: string
-  saleType: string
+  insuranceTypeId: number
   price: number
   customerSatisfaction: number
   saleDate: string

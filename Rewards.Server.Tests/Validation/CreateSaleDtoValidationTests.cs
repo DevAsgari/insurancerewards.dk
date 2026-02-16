@@ -21,7 +21,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000.00m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -43,7 +43,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 0m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -64,7 +64,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = -100m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -85,7 +85,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1_500_000m, // Above max of 1,000,000
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -106,7 +106,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = (decimal)ValidationConstants.Price.MinValue,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -126,7 +126,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = (decimal)ValidationConstants.Price.MaxValue,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 4
@@ -150,7 +150,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 0
@@ -171,7 +171,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = 6
@@ -197,7 +197,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.UtcNow,
                 CustomerSatisfaction = satisfaction
@@ -212,52 +212,6 @@ namespace Rewards.Server.Tests.Validation
 
         #endregion
 
-        #region SaleType Validation Tests
-
-        [Fact]
-        public void CreateSaleDto_WithEmptySaleType_FailsValidation()
-        {
-            // Arrange
-            var dto = new CreateSaleDto
-            {
-                Id = Guid.NewGuid(),
-                SaleType = string.Empty,
-                Price = 1000m,
-                SaleDate = DateTime.UtcNow,
-                CustomerSatisfaction = 4
-            };
-
-            // Act
-            var results = ValidateDto(dto);
-
-            // Assert
-            Assert.NotEmpty(results);
-            Assert.Contains(results, r => r.ErrorMessage!.Contains("Sale type"));
-        }
-
-        [Fact]
-        public void CreateSaleDto_WithSaleTypeTooLong_FailsValidation()
-        {
-            // Arrange
-            var dto = new CreateSaleDto
-            {
-                Id = Guid.NewGuid(),
-                SaleType = new string('A', ValidationConstants.SaleType.MaxLength + 1),
-                Price = 1000m,
-                SaleDate = DateTime.UtcNow,
-                CustomerSatisfaction = 4
-            };
-
-            // Act
-            var results = ValidateDto(dto);
-
-            // Assert
-            Assert.Single(results);
-            Assert.Contains(ValidationConstants.SaleType.LengthErrorMessage, results[0].ErrorMessage);
-        }
-
-        #endregion
-
         #region SaleDate Validation Tests
 
         [Fact]
@@ -267,7 +221,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.UtcNow.AddYears(-ValidationConstants.SaleDate.MaxYearsInPast - 1),
                 CustomerSatisfaction = 4
@@ -288,7 +242,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life Insurance",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.UtcNow.AddDays(ValidationConstants.SaleDate.MaxDaysInFuture + 1),
                 CustomerSatisfaction = 4
@@ -313,7 +267,7 @@ namespace Rewards.Server.Tests.Validation
             var dto = new CreateSaleDto
             {
                 Id = Guid.NewGuid(),
-                SaleType = string.Empty,
+                InsuranceTypeId = 0,
                 Price = -100m,
                 SaleDate = DateTime.UtcNow.AddYears(-20),
                 CustomerSatisfaction = 0

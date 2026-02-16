@@ -12,7 +12,7 @@ describe('salesApi', () => {
       const mockSales: Sale[] = [
         {
           id: '1',
-          saleType: 'Life',
+          insuranceTypeId: 1, insuranceTypeName: 'Life',
           price: 1000,
           customerSatisfaction: 8,
           saleDate: '2025-01-01',
@@ -20,7 +20,7 @@ describe('salesApi', () => {
         },
         {
           id: '2',
-          saleType: 'Health',
+          insuranceTypeId: 2, insuranceTypeName: 'Health',
           price: 2000,
           customerSatisfaction: 9,
           saleDate: '2025-01-02',
@@ -50,7 +50,7 @@ describe('salesApi', () => {
         text: async () => 'Server error'
       })
 
-      await expect(salesApi.fetchSales()).rejects.toThrow('Failed to fetch sales: Server error')
+      await expect(salesApi.fetchSales()).rejects.toThrow('Failed to fetch sales')
     })
   })
 
@@ -58,7 +58,7 @@ describe('salesApi', () => {
     it('should create a new sale successfully', async () => {
       const payload: CreateSalePayload = {
         id: '123',
-        saleType: 'Car',
+        insuranceTypeId: 3,
         price: 5000,
         customerSatisfaction: 10,
         saleDate: '2025-01-15'
@@ -89,7 +89,7 @@ describe('salesApi', () => {
     it('should throw error when creation fails', async () => {
       const payload: CreateSalePayload = {
         id: '123',
-        saleType: 'Car',
+        insuranceTypeId: 3,
         price: 5000,
         customerSatisfaction: 10,
         saleDate: '2025-01-15'
@@ -101,7 +101,7 @@ describe('salesApi', () => {
       })
 
       await expect(salesApi.createSale(payload)).rejects.toThrow(
-        'Failed to register sale: Validation error'
+        'Failed to register sale'
       )
     })
   })
@@ -111,7 +111,7 @@ describe('salesApi', () => {
       const mockSales: Sale[] = [
         {
           id: '1',
-          saleType: 'Life',
+          insuranceTypeId: 1, insuranceTypeName: 'Life',
           price: 1000,
           customerSatisfaction: 8,
           saleDate: '2025-01-01',
@@ -139,7 +139,7 @@ describe('salesApi', () => {
       const mockSales: Sale[] = [
         {
           id: '1',
-          saleType: 'Life',
+          insuranceTypeId: 1, insuranceTypeName: 'Life',
           price: 1000,
           customerSatisfaction: 8,
           saleDate: '2025-01-01',
@@ -170,7 +170,7 @@ describe('salesApi', () => {
       })
 
       await expect(salesApi.calculateRewards(0)).rejects.toThrow(
-        'Failed to calculate rewards: Invalid strategy'
+        'Failed to calculate rewards'
       )
     })
   })
@@ -179,7 +179,7 @@ describe('salesApi', () => {
     it('should update a sale successfully', async () => {
       const sale: Sale = {
         id: '123',
-        saleType: 'Life',
+        insuranceTypeId: 1, insuranceTypeName: 'Life',
         price: 1500,
         customerSatisfaction: 9,
         saleDate: '2025-01-01',
@@ -209,7 +209,7 @@ describe('salesApi', () => {
     it('should throw error when update fails', async () => {
       const sale: Sale = {
         id: '123',
-        saleType: 'Life',
+        insuranceTypeId: 1, insuranceTypeName: 'Life',
         price: 1500,
         customerSatisfaction: 9,
         saleDate: '2025-01-01'
@@ -220,7 +220,7 @@ describe('salesApi', () => {
         text: async () => 'Sale not found'
       })
 
-      await expect(salesApi.updateSale(sale)).rejects.toThrow('Failed to update sale: Sale not found')
+      await expect(salesApi.updateSale(sale)).rejects.toThrow('Failed to update sale')
     })
   })
 
@@ -244,7 +244,7 @@ describe('salesApi', () => {
         text: async () => 'Sale not found'
       })
 
-      await expect(salesApi.deleteSale('123')).rejects.toThrow('Failed to delete sale: Sale not found')
+      await expect(salesApi.deleteSale('123')).rejects.toThrow('Failed to delete sale')
     })
   })
 })

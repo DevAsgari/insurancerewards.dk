@@ -23,9 +23,6 @@ export const ValidationConstants = {
   },
 
   SaleType: {
-    MIN_LENGTH: 1,
-    MAX_LENGTH: 100,
-    LENGTH_ERROR_MESSAGE: 'Sale type must be between 1 and 100 characters',
     REQUIRED_ERROR_MESSAGE: 'Insurance type is required'
   },
 
@@ -47,15 +44,15 @@ export interface ValidationResult {
  * Validate sale data before API submission
  */
 export function validateSaleData(data: {
-  insuranceType?: string
+  insuranceType?: number | undefined
   price: number
   satisfaction: number | undefined
   date?: string
 }): ValidationResult {
   const errors: string[] = []
 
-  // Validate insurance type if provided
-  if (data.insuranceType !== undefined && !data.insuranceType.trim()) {
+  // Validate insurance type
+  if (data.insuranceType === undefined || data.insuranceType === null) {
     errors.push('Insurance type is required')
   }
 

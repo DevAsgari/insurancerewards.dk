@@ -73,7 +73,7 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   submit: [
     formData: {
-      insuranceType: string;
+      insuranceType: number | undefined;
       price: number;
       satisfaction: number | undefined;
       date: string;
@@ -85,12 +85,12 @@ const insuranceTypeOptions = INSURANCE_TYPE_OPTIONS;
 const satisfactionOptions = SATISFACTION_OPTIONS;
 
 const formData = reactive<{
-  insuranceType: string;
+  insuranceType: number | undefined;
   price: number;
   satisfaction: number | undefined;
   date: string;
 }>({
-  insuranceType: "",
+  insuranceType: undefined,
   price: 0,
   satisfaction: undefined,
   date: new Date().toISOString().split("T")[0]!,
@@ -139,7 +139,7 @@ const handleSubmit = () => {
 };
 
 const resetForm = () => {
-  formData.insuranceType = "";
+  formData.insuranceType = undefined;
   formData.price = 0;
   formData.satisfaction = undefined;
   formData.date = new Date().toISOString().split("T")[0]!;

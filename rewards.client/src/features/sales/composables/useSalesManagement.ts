@@ -26,8 +26,7 @@ export function useSalesManagement() {
       const fetchedSales = await salesApi.fetchSales()
       sales.value = fetchedSales
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch sales'
-      snackbar.error(errorMessage)
+      snackbar.error('Failed to fetch sales')
       console.error('Error fetching sales:', err)
     } finally {
       loading.value = false
@@ -85,8 +84,7 @@ export function useSalesManagement() {
       closeEditModal()
       snackbar.success('Sale updated successfully')
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to update sale'
-      snackbar.error(errorMessage)
+      snackbar.error('Failed to update sale')
       console.error('Error updating sale:', err)
     } finally {
       loading.value = false
@@ -121,8 +119,7 @@ export function useSalesManagement() {
       snackbar.success('Sale deleted successfully')
       return true
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to delete sale'
-      snackbar.error(errorMessage)
+      snackbar.error('Failed to delete sale')
       console.error('Error deleting sale:', err)
       return false
     } finally {

@@ -50,7 +50,7 @@ namespace Rewards.Server.Tests.Services
                 new Sale
                 {
                     Id = Guid.NewGuid(),
-                    SaleType = "Life",
+                    InsuranceTypeId = 1,
                     Price = 1000m,
                     SaleDate = DateTime.Now,
                     CustomerSatisfaction = 5
@@ -58,7 +58,7 @@ namespace Rewards.Server.Tests.Services
                 new Sale
                 {
                     Id = Guid.NewGuid(),
-                    SaleType = "Health",
+                    InsuranceTypeId = 2,
                     Price = 2000m,
                     SaleDate = DateTime.Now,
                     CustomerSatisfaction = 8
@@ -88,7 +88,7 @@ namespace Rewards.Server.Tests.Services
                 new Sale
                 {
                     Id = Guid.NewGuid(),
-                    SaleType = "Life",
+                    InsuranceTypeId = 1,
                     Price = 1000m,
                     SaleDate = DateTime.Now,
                     CustomerSatisfaction = 5
@@ -118,7 +118,7 @@ namespace Rewards.Server.Tests.Services
                 new Sale
                 {
                     Id = saleId,
-                    SaleType = "Car",
+                    InsuranceTypeId = 3,
                     Price = 5000m,
                     SaleDate = saleDate,
                     CustomerSatisfaction = 9
@@ -136,7 +136,7 @@ namespace Rewards.Server.Tests.Services
             // Assert
             var dto = result.First();
             Assert.Equal(saleId, dto.Id);
-            Assert.Equal("Car", dto.SaleType);
+            Assert.Equal(string.Empty, dto.InsuranceTypeName);
             Assert.Equal(5000m, dto.Price);
             Assert.Equal(saleDate, dto.SaleDate);
             Assert.Equal(9, dto.CustomerSatisfaction);

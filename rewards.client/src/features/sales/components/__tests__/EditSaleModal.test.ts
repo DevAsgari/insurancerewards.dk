@@ -7,7 +7,8 @@ import type { Sale } from '@/features/sales/types'
 describe('EditSaleModal', () => {
   const mockSale: Sale = {
     id: '1',
-    saleType: 'Life Insurance',
+    insuranceTypeId: 1,
+    insuranceTypeName: 'Life Insurance',
     price: 1000,
     customerSatisfaction: 5,
     saleDate: '2024-01-01',

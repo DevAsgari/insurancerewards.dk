@@ -15,12 +15,17 @@ namespace Rewards.Server.Repositories
 
         public async Task<List<Sale>> GetAllAsync()
         {
-            return await _context.Sales.AsNoTracking().ToListAsync();
+            return await _context.Sales
+                .Include(s => s.InsuranceType)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Sale?> GetByIdAsync(Guid id)
         {
-            return await _context.Sales.AsNoTracking()
+            return await _context.Sales
+                .Include(s => s.InsuranceType)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 

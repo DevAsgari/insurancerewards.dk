@@ -8,11 +8,12 @@ namespace Rewards.Server.Configuration
     {
         public AutoMapperProfile()
         {
-            CreateMap<Sale, SaleDto>();
+            CreateMap<Sale, SaleDto>()
+                .ForMember(dest => dest.InsuranceTypeName, opt => opt.MapFrom(src => src.InsuranceType.Name));
             CreateMap<CreateSaleDto, Sale>();
             CreateMap<UpdateSalePriceAndSatisfactionDto, Sale>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.SaleType, opt => opt.Ignore())
+                .ForMember(dest => dest.InsuranceTypeId, opt => opt.Ignore())
                 .ForMember(dest => dest.SaleDate, opt => opt.Ignore());
         }
     }

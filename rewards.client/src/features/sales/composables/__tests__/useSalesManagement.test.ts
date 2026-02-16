@@ -37,7 +37,8 @@ describe('useSalesManagement', () => {
   const mockSales: Sale[] = [
     {
       id: '1',
-      saleType: 'Life Insurance',
+      insuranceTypeId: 1,
+      insuranceTypeName: 'Life Insurance',
       price: 1000,
       customerSatisfaction: 5,
       saleDate: '2024-01-01',
@@ -45,7 +46,8 @@ describe('useSalesManagement', () => {
     },
     {
       id: '2',
-      saleType: 'Health Insurance',
+      insuranceTypeId: 2,
+      insuranceTypeName: 'Health Insurance',
       price: 2000,
       customerSatisfaction: 4,
       saleDate: '2024-01-02',
@@ -83,7 +85,7 @@ describe('useSalesManagement', () => {
       await fetchSales()
 
       expect(sales.value).toEqual([])
-      expect(mockSnackbar.error).toHaveBeenCalledWith('Failed to fetch')
+      expect(mockSnackbar.error).toHaveBeenCalledWith('Failed to fetch sales')
     })
   })
 
@@ -166,7 +168,7 @@ describe('useSalesManagement', () => {
       const updates = { price: 1500, customerSatisfaction: 4 }
       await updateSale(updates)
 
-      expect(mockSnackbar.error).toHaveBeenCalledWith('Update failed')
+      expect(mockSnackbar.error).toHaveBeenCalledWith('Failed to update sale')
       expect(editModalVisible.value).toBe(true) // Modal should still be open on error
     })
 
@@ -223,7 +225,7 @@ describe('useSalesManagement', () => {
 
       await deleteSale('1')
 
-      expect(mockSnackbar.error).toHaveBeenCalledWith('Delete failed')
+      expect(mockSnackbar.error).toHaveBeenCalledWith('Failed to delete sale')
     })
   })
 })

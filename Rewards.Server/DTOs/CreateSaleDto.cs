@@ -7,12 +7,9 @@ namespace Rewards.Server.DTOs
     {
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = ValidationConstants.SaleType.RequiredErrorMessage)]
-        [StringLength(
-            ValidationConstants.SaleType.MaxLength,
-            MinimumLength = ValidationConstants.SaleType.MinLength,
-            ErrorMessage = ValidationConstants.SaleType.LengthErrorMessage)]
-        public string SaleType { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Insurance type is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "InsuranceTypeId must be a valid ID")]
+        public int InsuranceTypeId { get; set; }
 
         [Range(
             ValidationConstants.Price.MinValue,

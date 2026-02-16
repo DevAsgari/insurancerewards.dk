@@ -42,7 +42,7 @@ describe('SaleForm', () => {
     // Set insurance type via CustomDropdown
     const dropdowns = wrapper.findAllComponents(CustomDropdown)
     const insuranceDropdown = dropdowns[0]
-    await insuranceDropdown.vm.$emit('update:modelValue', 'Life Insurance')
+    await insuranceDropdown.vm.$emit('update:modelValue', 1)
 
     // Set satisfaction via CustomDropdown
     const satisfactionDropdown = dropdowns[1]
@@ -56,7 +56,7 @@ describe('SaleForm', () => {
 
     expect(wrapper.emitted('submit')).toBeTruthy()
     const emittedData = wrapper.emitted('submit')?.[0][0] as any
-    expect(emittedData.insuranceType).toBe('Life Insurance')
+    expect(emittedData.insuranceType).toBe(1)
     expect(emittedData.price).toBe(1000)
     expect(emittedData.satisfaction).toBe(5)
     expect(emittedData.date).toBe('2024-01-01')

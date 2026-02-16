@@ -9,7 +9,8 @@ const API_BASE_URL = '/api/sales'
 async function handleResponse<T>(response: Response, errorMessage: string): Promise<T> {
   if (!response.ok) {
     const errorText = await response.text()
-    throw new Error(`${errorMessage}: ${errorText}`)
+    console.error(`API Error (${response.status}):`, errorText)
+    throw new Error(errorMessage)
   }
 
   // Return empty object for 204 No Content responses

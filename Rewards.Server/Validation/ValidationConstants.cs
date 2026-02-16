@@ -37,22 +37,6 @@ namespace Rewards.Server.Validation
             public const string RangeErrorMessage = "Customer satisfaction must be between 1 and 5";
         }
 
-        public static class SaleType
-        {
-            /// <summary>
-            /// Minimum length for sale type/insurance type
-            /// </summary>
-            public const int MinLength = 1;
-
-            /// <summary>
-            /// Maximum length for sale type/insurance type
-            /// </summary>
-            public const int MaxLength = 100;
-
-            public const string RequiredErrorMessage = "Sale type is required";
-            public const string LengthErrorMessage = "Sale type must be between 1 and 100 characters";
-        }
-
         public static class SaleDate
         {
             /// <summary>

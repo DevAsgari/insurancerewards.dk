@@ -7,7 +7,8 @@ describe('SalesRewardsTable', () => {
   const mockSales: Sale[] = [
     {
       id: '1',
-      saleType: 'Life',
+      insuranceTypeId: 1,
+      insuranceTypeName: 'Life',
       price: 1000,
       customerSatisfaction: 8,
       saleDate: '2025-01-01T00:00:00',
@@ -15,7 +16,8 @@ describe('SalesRewardsTable', () => {
     },
     {
       id: '2',
-      saleType: 'Health',
+      insuranceTypeId: 2,
+      insuranceTypeName: 'Health',
       price: 2000,
       customerSatisfaction: 9,
       saleDate: '2025-01-02T00:00:00',

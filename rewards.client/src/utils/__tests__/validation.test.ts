@@ -5,7 +5,7 @@ describe('validation.ts', () => {
   describe('validateSaleData', () => {
     it('should validate valid sale data', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 5,
         date: '2024-01-01'
@@ -15,9 +15,9 @@ describe('validation.ts', () => {
       expect(result.errors).toEqual([])
     })
 
-    it('should reject empty insurance type', () => {
+    it('should reject undefined insurance type', () => {
       const result = validateSaleData({
-        insuranceType: '   ',
+        insuranceType: undefined,
         price: 1000,
         satisfaction: 5,
         date: '2024-01-01'
@@ -29,7 +29,7 @@ describe('validation.ts', () => {
 
     it('should reject negative price', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: -100,
         satisfaction: 5,
         date: '2024-01-01'
@@ -41,7 +41,7 @@ describe('validation.ts', () => {
 
     it('should reject zero price', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 0,
         satisfaction: 5,
         date: '2024-01-01'
@@ -53,7 +53,7 @@ describe('validation.ts', () => {
 
     it('should reject non-finite price', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: Infinity,
         satisfaction: 5,
         date: '2024-01-01'
@@ -65,7 +65,7 @@ describe('validation.ts', () => {
 
     it('should reject NaN price', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: NaN,
         satisfaction: 5,
         date: '2024-01-01'
@@ -77,7 +77,7 @@ describe('validation.ts', () => {
 
     it('should reject undefined satisfaction', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: undefined,
         date: '2024-01-01'
@@ -89,7 +89,7 @@ describe('validation.ts', () => {
 
     it('should reject satisfaction below 1', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 0,
         date: '2024-01-01'
@@ -101,7 +101,7 @@ describe('validation.ts', () => {
 
     it('should reject satisfaction above 5', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 6,
         date: '2024-01-01'
@@ -113,7 +113,7 @@ describe('validation.ts', () => {
 
     it('should reject non-integer satisfaction', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 3.5,
         date: '2024-01-01'
@@ -125,7 +125,7 @@ describe('validation.ts', () => {
 
     it('should reject invalid date', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 5,
         date: 'invalid-date'
@@ -135,20 +135,20 @@ describe('validation.ts', () => {
       expect(result.errors).toContain('Sale date must be a valid date')
     })
 
-    it('should accept data without insuranceType', () => {
+    it('should reject data without insuranceType', () => {
       const result = validateSaleData({
         price: 1000,
         satisfaction: 5,
         date: '2024-01-01'
       })
 
-      expect(result.valid).toBe(true)
-      expect(result.errors).toEqual([])
+      expect(result.valid).toBe(false)
+      expect(result.errors).toContain('Insurance type is required')
     })
 
     it('should accept data without date', () => {
       const result = validateSaleData({
-        insuranceType: 'Life Insurance',
+        insuranceType: 1,
         price: 1000,
         satisfaction: 5
       })
@@ -159,7 +159,7 @@ describe('validation.ts', () => {
 
     it('should collect multiple errors', () => {
       const result = validateSaleData({
-        insuranceType: '   ',
+        insuranceType: undefined,
         price: -100,
         satisfaction: undefined,
         date: 'invalid'

@@ -19,7 +19,7 @@ namespace Rewards.Server.Tests.Strategies
             var sale = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5
@@ -40,7 +40,7 @@ namespace Rewards.Server.Tests.Strategies
             var sale = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 2000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 10
@@ -61,7 +61,7 @@ namespace Rewards.Server.Tests.Strategies
             var sale = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 0m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 0

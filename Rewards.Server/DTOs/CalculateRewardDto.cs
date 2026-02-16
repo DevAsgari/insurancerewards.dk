@@ -3,7 +3,7 @@
     public class CalculateRewardDto
     {
         public Guid Id { get; set; }
-        public string SaleType { get; set; } = string.Empty;
+        public string InsuranceTypeName { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public DateTime SaleDate { get; set; }
         public int CustomerSatisfaction { get; set; }

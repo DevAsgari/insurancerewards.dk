@@ -23,7 +23,7 @@ namespace Rewards.Server.Services
             return sales.Select(sale => new CalculateRewardDto
             {
                 Id = sale.Id,
-                SaleType = sale.SaleType,
+                InsuranceTypeName = sale.InsuranceType?.Name ?? string.Empty,
                 Price = sale.Price,
                 SaleDate = sale.SaleDate,
                 CustomerSatisfaction = sale.CustomerSatisfaction,

@@ -82,7 +82,7 @@ export default defineComponent({
       try {
         const payload = {
           id: uuid.v1(),
-          saleType: saleData.insuranceType,
+          insuranceTypeId: saleData.insuranceType as number,
           price: saleData.price,
           customerSatisfaction: saleData.satisfaction,
           saleDate: new Date(saleData.date).toISOString(),
@@ -92,9 +92,7 @@ export default defineComponent({
 
         snackbar.success("Sale registered successfully!");
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "An error occurred while registering the sale";
-        snackbar.error(errorMessage);
+        snackbar.error("Failed to register sale. Please try again.");
         console.error("Error registering sale:", err);
       } finally {
         loading.value = false;

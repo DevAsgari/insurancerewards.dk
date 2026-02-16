@@ -8,10 +8,10 @@ import type { DropdownOption } from '@/shared/components'
  * Insurance type options for sale forms
  */
 export const INSURANCE_TYPE_OPTIONS: DropdownOption[] = [
-  { value: 'Life Insurance', label: 'Life Insurance' },
-  { value: 'Health Insurance', label: 'Health Insurance' },
-  { value: 'Car Insurance', label: 'Car Insurance' },
-  { value: 'Home Insurance', label: 'Home Insurance' }
+  { value: 1, label: 'Life Insurance' },
+  { value: 2, label: 'Health Insurance' },
+  { value: 3, label: 'Car Insurance' },
+  { value: 4, label: 'Home Insurance' }
 ]
 
 /**

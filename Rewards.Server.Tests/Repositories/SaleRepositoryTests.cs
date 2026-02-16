@@ -34,10 +34,14 @@ namespace Rewards.Server.Tests.Repositories
         public async Task GetAllAsync_WithSales_ReturnsAllSales()
         {
             // Arrange
+            var type1 = new InsuranceType { Id = 1, Name = "Car Insurance" };
+            var type2 = new InsuranceType { Id = 2, Name = "Home Insurance" };
+            await _context.InsuranceTypes.AddRangeAsync(type1, type2);
+
             var sale1 = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5
@@ -45,7 +49,7 @@ namespace Rewards.Server.Tests.Repositories
             var sale2 = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Health",
+                InsuranceTypeId = 2,
                 Price = 2000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 8
@@ -65,11 +69,14 @@ namespace Rewards.Server.Tests.Repositories
         public async Task GetByIdAsync_WithExistingId_ReturnsSale()
         {
             // Arrange
+            var type1 = new InsuranceType { Id = 1, Name = "Car Insurance" };
+            await _context.InsuranceTypes.AddAsync(type1);
+
             var saleId = Guid.NewGuid();
             var sale = new Sale
             {
                 Id = saleId,
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5
@@ -84,7 +91,7 @@ namespace Rewards.Server.Tests.Repositories
             // Assert
             Assert.NotNull(result);
             Assert.Equal(saleId, result.Id);
-            Assert.Equal("Life", result.SaleType);
+            Assert.Equal(1, result.InsuranceTypeId);
         }
 
         [Fact]
@@ -104,7 +111,7 @@ namespace Rewards.Server.Tests.Repositories
             var sale = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Car",
+                InsuranceTypeId = 3,
                 Price = 5000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 9
@@ -119,7 +126,7 @@ namespace Rewards.Server.Tests.Repositories
 
             var savedSale = await _context.Sales.FindAsync(sale.Id);
             Assert.NotNull(savedSale);
-            Assert.Equal(sale.SaleType, savedSale.SaleType);
+            Assert.Equal(sale.InsuranceTypeId, savedSale.InsuranceTypeId);
         }
 
         [Fact]
@@ -129,7 +136,7 @@ namespace Rewards.Server.Tests.Repositories
             var sale = new Sale
             {
                 Id = Guid.NewGuid(),
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5
@@ -161,7 +168,7 @@ namespace Rewards.Server.Tests.Repositories
             var sale = new Sale
             {
                 Id = saleId,
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5
@@ -196,7 +203,7 @@ namespace Rewards.Server.Tests.Repositories
             var sale = new Sale
             {
                 Id = saleId,
-                SaleType = "Life",
+                InsuranceTypeId = 1,
                 Price = 1000m,
                 SaleDate = DateTime.Now,
                 CustomerSatisfaction = 5

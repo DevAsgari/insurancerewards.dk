@@ -47,47 +47,24 @@ describe('useFormValidation', () => {
 
   describe('validateInsuranceType', () => {
     it('should validate valid insurance type', () => {
-      const result = validation.validateInsuranceType('Life Insurance')
+      const result = validation.validateInsuranceType(1)
 
       expect(result).toBe(true)
       expect(validation.errors.insuranceType).toBeUndefined()
     })
 
-    it('should reject empty string', () => {
-      const result = validation.validateInsuranceType('')
+    it('should reject undefined', () => {
+      const result = validation.validateInsuranceType(undefined)
 
       expect(result).toBe(false)
       expect(validation.errors.insuranceType).toBe(ValidationConstants.SaleType.REQUIRED_ERROR_MESSAGE)
-    })
-
-    it('should reject whitespace-only string', () => {
-      const result = validation.validateInsuranceType('   ')
-
-      expect(result).toBe(false)
-      expect(validation.errors.insuranceType).toBe(ValidationConstants.SaleType.REQUIRED_ERROR_MESSAGE)
-    })
-
-    it('should reject string exceeding max length', () => {
-      const longString = 'a'.repeat(101)
-      const result = validation.validateInsuranceType(longString)
-
-      expect(result).toBe(false)
-      expect(validation.errors.insuranceType).toBe(ValidationConstants.SaleType.LENGTH_ERROR_MESSAGE)
-    })
-
-    it('should accept string at max length boundary', () => {
-      const maxString = 'a'.repeat(100)
-      const result = validation.validateInsuranceType(maxString)
-
-      expect(result).toBe(true)
-      expect(validation.errors.insuranceType).toBeUndefined()
     })
 
     it('should clear previous error on valid input', () => {
-      validation.validateInsuranceType('')
+      validation.validateInsuranceType(undefined)
       expect(validation.errors.insuranceType).toBeDefined()
 
-      validation.validateInsuranceType('Life Insurance')
+      validation.validateInsuranceType(1)
       expect(validation.errors.insuranceType).toBeUndefined()
     })
   })
@@ -284,7 +261,7 @@ describe('useFormValidation', () => {
   describe('validateForm', () => {
     it('should validate complete valid form', () => {
       const formData = {
-        insuranceType: 'Life Insurance',
+        insuranceType: 1 as number | undefined,
         price: 1000,
         satisfaction: 5 as number | undefined,
         date: new Date().toISOString().split('T')[0]
@@ -298,7 +275,7 @@ describe('useFormValidation', () => {
 
     it('should reject form with invalid insuranceType', () => {
       const formData = {
-        insuranceType: '',
+        insuranceType: undefined,
         price: 1000,
         satisfaction: 5 as number | undefined,
         date: new Date().toISOString().split('T')[0]
@@ -312,7 +289,7 @@ describe('useFormValidation', () => {
 
     it('should reject form with invalid price', () => {
       const formData = {
-        insuranceType: 'Life Insurance',
+        insuranceType: 1 as number | undefined,
         price: -100,
         satisfaction: 5 as number | undefined,
         date: new Date().toISOString().split('T')[0]
@@ -326,7 +303,7 @@ describe('useFormValidation', () => {
 
     it('should reject form with invalid satisfaction', () => {
       const formData = {
-        insuranceType: 'Life Insurance',
+        insuranceType: 1 as number | undefined,
         price: 1000,
         satisfaction: undefined,
         date: new Date().toISOString().split('T')[0]
@@ -340,7 +317,7 @@ describe('useFormValidation', () => {
 
     it('should reject form with invalid date', () => {
       const formData = {
-        insuranceType: 'Life Insurance',
+        insuranceType: 1 as number | undefined,
         price: 1000,
         satisfaction: 5 as number | undefined,
         date: ''
@@ -354,7 +331,7 @@ describe('useFormValidation', () => {
 
     it('should collect multiple validation errors', () => {
       const formData = {
-        insuranceType: '',
+        insuranceType: undefined,
         price: -100,
         satisfaction: undefined,
         date: ''
@@ -374,7 +351,7 @@ describe('useFormValidation', () => {
       validation.errors.price = 'Old error'
 
       const validFormData = {
-        insuranceType: 'Life Insurance',
+        insuranceType: 1 as number | undefined,
         price: 1000,
         satisfaction: 5 as number | undefined,
         date: new Date().toISOString().split('T')[0]

@@ -48,8 +48,7 @@ export function useRewardCalculation() {
         snackbar.warning('No sales registered yet - add your first sale to earn rewards!')
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to calculate rewards'
-      snackbar.error(errorMessage)
+      snackbar.error('Failed to calculate rewards')
       console.error('Error calculating rewards:', err)
     } finally {
       loading.value = false
